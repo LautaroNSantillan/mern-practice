@@ -1,7 +1,10 @@
 import express from 'express';
-import  {PORT, mongourl}  from "./config.js";
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import booksRoute from './routes/booksRoutes.js';
+
+
+dotenv.config();
 
 const app = express();
 
@@ -15,12 +18,12 @@ app.get('/', (req, res) => {
 });
 
 function startApp(app){
-    app.listen(PORT, (err, res) =>{
-        console.log(`app on ${PORT}`)
+    app.listen(process.env.PORT, (err, res) =>{
+        console.log(`app on ${process.env.PORT}`)
     });
 }
 
-mongoose.connect(mongourl)
+mongoose.connect(process.env.MONGO_URL)
     .then(()=>{
         console.log("con to db");
         startApp(app);
