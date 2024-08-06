@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import mongoose from 'mongoose';
 import booksRoute from './routes/booksRoutes.js';
 
@@ -10,7 +11,9 @@ const app = express();
 
 //middleware
 app.use(express.json());
+app.use(cors());// origin, methods[], allowheaders[]
 app.use('/books', booksRoute); // for /books requests handle them with booksRoute middleware
+
 
 app.get('/', (req, res) => {
     console.log(req)
