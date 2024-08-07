@@ -5,7 +5,7 @@ import { Link} from 'react-router-dom'
 const BackButton = ({destination ='/'}) => {
   return (
     <div className='flex'>
-        <Link to={destination} className=' text-white px-4 py-1 raounded-lg w-fit'>
+        <Link to={destination} className=' text-white px-4 py-1 rounded-lg w-fit bg-sky-500'>
         <BsArrowLeft className='text-2xl'/>
         </Link>
     </div>
