@@ -1,19 +1,17 @@
-const connect = require('./connect.js');
-const express = require('express');
-const cors = require('cors');
-const taskRoutes = require('./routes/taskRoutes.js');
+const connect = require ('./connect') //runs the whole file
+const express = require('express')
+const cors = require('cors')
+const taskRoutes = require ('./tasksRoutes')
 
-const app = express();
-const PORT = 3000;
+const app = express() //creates app
+const PORT = 3000
 
 // middleware
-app.use(cors());
-app.use(express.json());
+app.use(cors())
+app.use(express.json())
+app.use(taskRoutes)
 
-// routes
-app.use('/', taskRoutes);
-
-app.listen(PORT, () => {
-    connect.connectToServer();
-    console.log(`Server is running on port ${PORT}`);
-})
+app.listen(PORT, ()=> {
+    connect.connectToServer()  //defined database
+    console.log(`Server is running on port ${PORT}`)
+})   //creates server
