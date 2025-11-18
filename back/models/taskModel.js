@@ -6,7 +6,7 @@ const COLLECTION = 'tasks';
 function getCollection() {
   const db = connect.getDb();
   if (!db) throw new Error('Database not initialized');
-  return db.collection(COLLECTION)//.find({})
+  return db.collection(COLLECTION);  // AI suggesting to use this as cursor THEN converting it to array in each method    ???
 }
 
 module.exports = {
