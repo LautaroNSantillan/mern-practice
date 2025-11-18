@@ -1,4 +1,4 @@
-const { ObjectId } = require('mongodb');
+const { ObjectId } = require('mongodb');  // convert regular string into compatible objectid
 const connect = require('../connect');
 
 const COLLECTION = 'tasks';
@@ -6,7 +6,7 @@ const COLLECTION = 'tasks';
 function getCollection() {
   const db = connect.getDb();
   if (!db) throw new Error('Database not initialized');
-  return db.collection(COLLECTION);  // AI suggesting to use this as cursor THEN converting it to array in each method    ???
+  return db.collection(COLLECTION)  // ting to use this as cursarr
 }
 
 module.exports = {
@@ -27,7 +27,7 @@ module.exports = {
 
   updateTask: async (id, update) => {
     const col = getCollection();
-    return await col.updateOne({ _id: new ObjectId(id) }, { $set: update });
+    return await col.updateOne({ _id: new ObjectId(id) }, update);
   },
 
   deleteTask: async (id) => {
