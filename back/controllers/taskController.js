@@ -46,21 +46,36 @@ exports.createTask = async (req, res) => {
 };
 
 exports.updateTask = async (req, res) => {
-    try {
-        let taskToUpdate = {
-            $set: {
-                title: req.body.title,
-                description: req.body.description,
-                completed: req.body.completed,
-            }
-        };
+     try {
+        // Build a dynamic update object ONLY with fields provided in req.body
+        const fieldsToUpdate = {};
 
-        if (!req.body.title || !req.body.description) {
-            return res.status(400).json({ error: "Task info is required" });
+        if (req.body.title !== undefined) {
+            fieldsToUpdate.title = req.body.title;
+        }
+        if (req.body.description !== undefined) {
+            fieldsToUpdate.description = req.body.description;
+        }
+        if (req.body.completed !== undefined) {
+            fieldsToUpdate.completed = req.body.completed;
         }
 
-        let data = await Task.updateTask(req.params.id, taskToUpdate);
-        res.json({ message: "Task updated!", data: data });
+        // If no update fields were provided
+        if (Object.keys(fieldsToUpdate).length === 0) {
+            return res.status(400).json({ error: "No fields provided to update" });
+        }
+
+        // MongoDB update structure
+        const taskToUpdate = { $set: fieldsToUpdate };
+
+        // Call your model method
+        const data = await Task.updateTask(req.params.id, taskToUpdate);
+
+        res.json({
+            message: "Task updated!",
+            data: data
+        });
+
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
