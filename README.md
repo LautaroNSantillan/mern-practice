@@ -92,74 +92,29 @@ back/
 ## 💡 Example Requests & Responses
 
 ### Create a Task
-**Request**:
-```bash
-curl -X POST http://localhost:3000/tasks \
-  -H "Content-Type: application/json" \
-  -d '{"title": "Buy groceries", "description": "Milk and bread"}'
-```
+![Create](back/misc/images/create.png)
 
-**Response** (200 OK):
-```json
-{
-  "message": "New task created!",
-  "data": {
-    "insertedId": "64a..."
-  }
-}
-```
+
 
 ### Get All Tasks
-**Request**:
-```bash
-curl http://localhost:3000/tasks
-```
+![Get All](back/misc/images/get-all.png)
 
-**Response** (200 OK):
-```json
-[
-  {
-    "_id": "64a...",
-    "title": "Buy groceries",
-    "description": "Milk and bread",
-    "completed": false
-  }
-]
-```
+
+
+### Get One Task
+![Get by id](back/misc/images/find-by-id.png)
+
+
 
 ### Update a Task
-**Request**:
-```bash
-curl -X PUT http://localhost:3000/tasks/64a... \
-  -H "Content-Type: application/json" \
-  -d '{"completed": true}'
-```
+![Refactoring prompt example](back/misc/images/update.png)
 
-**Response** (200 OK):
-```json
-{
-  "message": "Task updated!",
-  "data": {
-    "matchedCount": 1
-  }
-}
-```
+
 
 ### Delete a Task
-**Request**:
-```bash
-curl -X DELETE http://localhost:3000/tasks/64a...
-```
+![Delete](back/misc/images/delete.png)
 
-**Response** (200 OK):
-```json
-{
-  "message": "Task deleted!",
-  "data": {
-    "deletedCount": 1
-  }
-}
-```
+
 
 
 ## Interacting with the AI 
@@ -178,7 +133,6 @@ curl -X DELETE http://localhost:3000/tasks/64a...
 ### ⚡AI can even help me write descriptive commits!
 ![AI-assisted commit example](back/misc/images/commits-using-ai.png)
 
-```
 
 🔸**Where the AI Was Most Helpful**: The AI was most helpful during the refactoring phase of the project. It assisted me in restructuring the API into a cleaner, modular architecture following best practices, helping me break down a single-file implementation into organized controllers, routes, and models. Additionally, it proved valuable for identifying potential logic issues and suggesting more efficient or standardized patterns.
 
